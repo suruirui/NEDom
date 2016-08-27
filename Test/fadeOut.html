@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>fadeout</title>
+    <style>
+        #demo {
+            width: 300px;
+            height: 100px;
+            background-color: lightskyblue;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="demo"></div>
+    <!--<div id="btn">点击测试</div>-->
+    <input type="button" id="btn" value="点击测试">
+    <script>
+        var demo = document.getElementById("demo");
+        var btn = document.getElementById("btn");
+
+        function  fadeout(elem) {
+            var val = 1;
+            var timer;
+            timer = setInterval(function () {  //设置定时器timer
+                    btn.disabled = true;//动画开始运行，禁用测试按钮
+                    val -= 0.1;     //每次-0.1， 0次到0
+                    elem.style.opacity = val;
+
+                    if(val < 0){   //淡出之后清除定时器
+                        clearInterval(timer);
+                    }
+            }, 100); // 100 ms * 10 = 1
+        }
+        btn.addEventListener('click',function(){  //测试按钮点击事件
+            fadeout(demo);
+        },false);
+
+    </script>
+</body>
+</html>

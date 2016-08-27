@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>getElementsByClassName</title>
+</head>
+<body>
+    <div id="example">
+        <p id="p1" class="aaa bbb"/>
+        <p id="p2" class="aaa ccc"/>
+        <p id="p3" class="bbb ccc"/>
+    </div>
+    <script>
+        function getElementsByClassName(element, names){
+            if(element.getElementsByClassName){  //特性侦测
+                return element.getElementsByClassName(names);
+            }else{
+                var elems = element.getElementsByTagName('*'); //获取节点下所有子元素
+                var result = [];
+                for(var i = 0;i <elems.length;i++){
+                    if(names.indexOf(elems[i].className) != -1){
+                        result.push(elems[i]);
+                    }
+                }
+                return result;
+            }
+        }
+        var example = document.getElementById('example');
+        var ps = getElementsByClassName(example,'ccc bbb');
+        console.log(ps);
+        console.log(ps.length);
+    </script>
+</body>
+</html>
