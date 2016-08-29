@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>selectDate</title>
+</head>
+<body>
+	  <select name="year" id="year">
+        <option value="0">--</option>
+        <option value="1999">1999</option>
+        <option value="2000">2000</option>
+        <option value="2001">2001</option>
+    </select>年
+    <select name="month" id="month">
+        <option value="0">--</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+    </select>月
+    <select name="date" id="date">
+        <option value="0">--</option>
+    </select>日
+	<script>
+		// 获取3个Select对象
+		var yearSelect = document.getElementById("year");
+		var monthSelect = document.getElementById("month");
+		var dateSelect = document.getElementById("date");
+
+		//跨浏览器事件处理		
+		 var eventUtil = {
+	        // 添加事件
+	        addHandler: function(element, type, handler) {
+	            if (element.addEventListener) {
+	                element.addEventListener(type, handler, false);
+	            } else if (element.attachEvent) {
+	                element.attachEvent('on' + type, handler);
+	            } else {
+	                element['on' + type] = handler;
+	            }
+	        }
+   	 	}
+
+		// 当年份和月份改变的时候, 都需要生成日期(兼容浏览器)
+		eventUtil.addHandler(yearSelect,'change',generateDate);
+		eventUtil.addHandler(monthSelect,'change',generateDate);
+
+	
+		function generateDate(){
+			// 删除原有的option
+			var optionArr = dateSelect.options;
+			for(var x = 1; x < optionArr.length; x++)
+				dateSelect.removeChild(optionArr[x--]);
+			
+			// 获取选中的年份和月份
+			var year = yearSelect.value;
+			var month = monthSelect.value;
+	
+			// 如果年没选或者月没选, 不生成月和日期 为0
+			if(year == "0" || month == "0"){
+				monthSelect.value = "0";
+				return;
+			}
+
+			// 根据年份和月份判断当前月有多少天
+			var days = 0;
+			if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+				days = 31;
+			else if (month == 2)
+				days = (year == 2000?29:28); //2000闰年判断
+			else
+				days = 30;
+			
+			// 生成option, 添加到dateSelect
+			for(var x = 1; x <= days; x++) {
+				var option = document.createElement("option");		
+				option.value = x;
+				option.innerHTML = x;
+				dateSelect.appendChild(option);
+			}
+		}
+	</script>
+</body>
+</html>

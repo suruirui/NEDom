@@ -18,7 +18,8 @@
                 var elems = element.getElementsByTagName('*'); //获取节点下所有子元素
                 var result = [];
                 for(var i = 0;i <elems.length;i++){
-                    if(names.indexOf(elems[i].className) != -1){
+                    // if(names.indexOf(elems[i].className) != -1){
+                      if(elems[i].className.indexOf(names) != -1){
                         result.push(elems[i]);
                     }
                 }
@@ -26,7 +27,7 @@
             }
         }
         var example = document.getElementById('example');
-        var ps = getElementsByClassName(example,'ccc bbb');
+        var ps = getElementsByClassName(example,'ccc');
         console.log(ps);
         console.log(ps.length);
     </script>

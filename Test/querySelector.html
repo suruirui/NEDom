@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>querySelector</title>
+</head>
+<body>
+	<form id="login">
+	  <div>
+	   <label for="name">用户名：</label>
+	   <input id="name" name="name">
+	  </div>
+ 	</form>
+ 	<script>
+ 		var loginForm = document.getElementById("login");
+ 		//var input = loginForm.querySelector("#name");
+ 		var input = loginForm.elements[0];
+ 		// var input = loginForm.elements['name'];
+ 		console.log(input);
+ 	</script>
+</body>
+</html>

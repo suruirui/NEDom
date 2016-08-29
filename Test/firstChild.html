@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>firstChild</title>
+</head>
+<body>
+	<p id="p">hello, <span id="s0"> world </span> </p>
+	<button onclick="alert(1);" id="btn">保存</button>
+	<div id="div">欢迎<span id="x">你</span>，来到<span id="y">网易云课堂</span></div>
+	<script>
+		var p = document.getElementById("p");
+		var btn = document.getElementById("btn");
+		var div = document.getElementById("div");
+		var y = document.getElementById("y");
+		console.log(p.firstChild);
+		console.log(btn.onclick);
+		console.log(div.lastChild);
+		console.log(y.parentNode.childNodes[1]);
+		console.log(y.previousSibling.previousSibling);
+	</script>
+</body>
+</html>

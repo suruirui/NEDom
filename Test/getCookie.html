@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>getCookies</title>
+</head>
+<body>
+	<script>
+		function getCookie(){
+			var cookie = {};
+			var all = document.cookie;
+			if(all === '')
+				return cookie;
+			var list = all.split(';');
+			for(var i=0;i<list.length;i++){
+				var item = list[i];
+				var p = item.indexOf('=');
+				var name = item.substring(0,p);
+				name = decodeURIComopent(name);
+				var value = item.substring(p+1);
+				value = decodeURIComopent(value);
+				cookie[name] = value;
+			}
+			return cookie;
+		}
+	</script>
+</body>
+</html>
